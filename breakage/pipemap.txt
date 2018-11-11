@@ -1,0 +1,26 @@
+Imports System.Text
+Public Class Form1
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim street As String = TextBox_street.Text
+
+
+        Try
+            Dim queryAddress As New StringBuilder
+            queryAddress.Append("https://www.google.com/maps/d/viewer?mid=1xekkKM1x2gN1syh2vBxP4Au9uPAlRFhh&ll=14.009579804875552%2C121.16732215000002&z=17")
+
+            If TextBox_street.Text <> String.Empty Then
+                queryAddress.Append(street + "," & "+")
+
+            End If
+
+
+            WebBrowser1.Navigate(queryAddress.ToString)
+
+
+        Catch ex As Exception
+            MessageBox.Show("Unable to retrive date")
+        End Try
+
+
+    End Sub
+End Class

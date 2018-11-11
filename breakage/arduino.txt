@@ -1,0 +1,108 @@
+
+#include <LiquidCrystal.h>
+int level=0;
+int level1=A1;
+int level2=A2;
+int level3=A3;
+int level4=A4;
+int level5=A5;
+int fsensor=8;
+int a;
+int b;
+int c;
+int d;
+int e;
+int r;
+int m=0; 
+int z=111; 
+  
+
+LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
+void setup()
+{
+pinMode(level1,INPUT);
+pinMode(level2,INPUT);
+pinMode(level3,INPUT);
+pinMode(level4,INPUT);
+pinMode(level5,INPUT);
+pinMode(fsensor,OUTPUT);
+lcd.begin(16, 2);
+Serial.begin(9600);
+}
+
+void loop()
+{
+Serial.println(level);
+r=digitalRead(fsensor);
+a=analogRead(level1);
+b=analogRead(level2);
+c=analogRead(level3);
+d=analogRead(level4);
+e=analogRead(level5);
+lcd.clear();
+lcd.setCursor(0,0);              
+lcd.print("Pressure Level");
+
+if(e>z && d>z && c>z && b>z && a>z )
+{
+  {
+    digitalWrite(fsensor,HIGH);
+  }
+lcd.setCursor(1,2);
+lcd.print("100Psi");
+}
+else
+{
+  if(e<z && d>z && c>z && b>z && a>z )
+{
+lcd.setCursor(1,2);
+lcd.print("80Psi");
+}
+else
+{
+  if(e<z && d<z && c>z && b>z && a>z )
+{
+lcd.setCursor(1,2);
+lcd.print("60Psi");
+}
+else
+{
+if(e<z && d<z && c<z && b>z && a>z )
+{
+
+lcd.setCursor(1,2);
+lcd.print("40Psi");
+}
+else
+if(e<z && d<z && c<z && b<z && a>z )
+{
+
+lcd.setCursor(1,2);
+lcd.print("20Psi");
+}
+else
+{if(e<z && d<z && c<z && b<z && a<z )
+{
+ {
+digitalWrite(fsensor,LOW);
+}
+
+lcd.setCursor(3,2);
+lcd.print("No Water");
+}
+}}}}
+if(r==LOW)
+{
+lcd.setCursor(0,3);
+lcd.print("No Water flow");
+}
+else
+{
+lcd.setCursor(0,3);
+lcd.print("The water is flowing");
+}
+{
+delay(1000);
+lcd.clear();
+
+}}
